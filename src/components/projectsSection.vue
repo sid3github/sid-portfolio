@@ -7,7 +7,10 @@
         :key="item.project_name"
       >
         <div class="project-image">
-          <img :src="`/public/${item.project_image_url}`" alt="project-image" />
+          <img
+            :src="`~/public/${item.project_image_url}`"
+            alt="project-image"
+          />
         </div>
         <div class="project-text">
           <h5>{{ item.project_name }}</h5>
