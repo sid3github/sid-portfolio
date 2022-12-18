@@ -52,11 +52,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="project-card"
-        v-for="item in cardItem"
-        :key="item.project_name"
-      >
+      <div class="project-card">
         <div class="project-image">
           <img src="/assets/images/project_three.png" alt="project-image" />
         </div>
