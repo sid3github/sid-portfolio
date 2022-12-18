@@ -22,10 +22,7 @@
       </div> -->
       <div class="project-card">
         <div class="project-image">
-          <img
-            src="/public/assets/images/project_one.png"
-            alt="project-image"
-          />
+          <img src="/assets/images/project_one.png" alt="project-image" />
         </div>
         <div class="project-text">
           <h5>Music Player</h5>
@@ -37,10 +34,7 @@
       </div>
       <div class="project-card">
         <div class="project-image">
-          <img
-            src="/public/assets/images/project_two.png"
-            alt="project-image"
-          />
+          <img src="/assets/images/project_two.png" alt="project-image" />
         </div>
         <div class="project-text">
           <h5>Quiz App</h5>
@@ -56,10 +50,7 @@
         :key="item.project_name"
       >
         <div class="project-image">
-          <img
-            src="/public/assets/images/project_three.png"
-            alt="project-image"
-          />
+          <img src="/assets/images/project_three.png" alt="project-image" />
         </div>
         <div class="project-text">
           <h5>Movie Database</h5>
