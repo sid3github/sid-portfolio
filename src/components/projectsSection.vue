@@ -8,7 +8,7 @@
       >
         <div class="project-image">
           <img
-            :src="`../src/assets/images/${item.project_image_url}`"
+            :src="`/public/assets/images/${item.project_image_url}`"
             alt="project-image"
           />
         </div>
