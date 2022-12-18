@@ -27,8 +27,14 @@
         <div class="project-text">
           <h5>Music Player</h5>
           <div class="project-button-container">
-            <a :href="item.project_code_url" target="_blank">Code</a>
-            <a :href="item.project_preview_url" target="_blank">Preview</a>
+            <a
+              href="https://github.com/sid3github/vue-music-app"
+              target="_blank"
+              >Code</a
+            >
+            <a href="https://goofy-mayer-78ec5d.netlify.app/" target="_blank"
+              >Preview</a
+            >
           </div>
         </div>
       </div>
@@ -39,8 +45,10 @@
         <div class="project-text">
           <h5>Quiz App</h5>
           <div class="project-button-container">
-            <a :href="item.project_code_url" target="_blank">Code</a>
-            <a :href="item.project_preview_url" target="_blank">Preview</a>
+            <a href="https://github.com/sid3github/vue-quiz" target="_blank"
+              >Code</a
+            >
+            <a href="https://vue3quiz.netlify.app/" target="_blank">Preview</a>
           </div>
         </div>
       </div>
@@ -55,8 +63,16 @@
         <div class="project-text">
           <h5>Movie Database</h5>
           <div class="project-button-container">
-            <a :href="item.project_code_url" target="_blank">Code</a>
-            <a :href="item.project_preview_url" target="_blank">Preview</a>
+            <a
+              href="https://github.com/sid3github/vue-movie-search"
+              target="_blank"
+              >Code</a
+            >
+            <a
+              href="https://vigorous-dijkstra-abb2c3.netlify.app"
+              target="_blank"
+              >Preview</a
+            >
           </div>
         </div>
       </div>
