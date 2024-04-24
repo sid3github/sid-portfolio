@@ -1,16 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* top section */
 .main-page-container {
   padding: 20px;
   margin: 0 auto;
+  margin-top: 8rem;
   max-width: 940px;
 }
 
@@ -53,8 +54,8 @@
 }
 
 .image-container img {
-  width: 320px;
-  height: 320px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   animation: fadeIn 2s;
 }
