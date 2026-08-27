@@ -1,89 +1,53 @@
 <template>
-  <div>
-    <div class="buttons-section">
+  <div class="bottom-shell">
+    <div class="buttons-section" role="tablist" aria-label="Sections">
       <button
-        :class="{ active: aboutSection }"
-        @click.prevent="switchSection('about')"
+        v-for="tab in tabs"
+        :key="tab.id"
+        :class="{ active: active === tab.id }"
+        role="tab"
+        :aria-selected="active === tab.id"
+        @click.prevent="$emit('update:active', tab.id)"
       >
-        About
-      </button>
-      <button
-        :class="{ active: skillsSection }"
-        @click.prevent="switchSection('skills')"
-      >
-        Skills
-      </button>
-      <button
-        :class="{ active: projectsSection }"
-        @click.prevent="switchSection('projects')"
-      >
-        Projects
-      </button>
-      <button
-        :class="{ active: contactSection }"
-        @click.prevent="switchSection('contact')"
-      >
-        Contact
+        {{ tab.label }}
       </button>
     </div>
 
     <div class="info-section">
-      <transition-group name="fade">
-        <about-section v-if="aboutSection" />
-        <skills-section v-if="skillsSection" />
-        <projects-section v-if="projectsSection" />
-        <contact-section v-if="contactSection" />
-      </transition-group>
+      <transition name="fade" mode="out-in">
+        <component :is="activeComponent" :key="active" />
+      </transition>
     </div>
   </div>
 </template>
 <script>
 import AboutSection from "./aboutSection.vue";
 import SkillsSection from "./skillsSection.vue";
+import ExperienceSection from "./experienceSection.vue";
 import ProjectsSection from "./projectsSection.vue";
 import ContactSection from "./contactSection.vue";
+import { tabs } from "../tabs";
+
 export default {
+  props: {
+    active: { type: String, required: true },
+  },
+  emits: ["update:active"],
   data() {
-    return {
-      aboutSection: true,
-      skillsSection: false,
-      projectsSection: false,
-      contactSection: false,
-    };
+    return { tabs };
+  },
+  computed: {
+    activeComponent() {
+      const tab = this.tabs.find((t) => t.id === this.active);
+      return tab ? tab.component : "about-section";
+    },
   },
   components: {
     AboutSection,
     SkillsSection,
+    ExperienceSection,
     ProjectsSection,
     ContactSection,
-  },
-  methods: {
-    switchSection(section) {
-      if (section === "about") {
-        this.aboutSection = true;
-        this.skillsSection = false;
-        this.projectsSection = false;
-        this.contactSection = false;
-      }
-      if (section === "skills") {
-        this.skillsSection = true;
-        this.aboutSection = false;
-        this.projectsSection = false;
-        this.contactSection = false;
-      }
-      if (section === "projects") {
-        this.projectsSection = true;
-        this.aboutSection = false;
-        this.skillsSection = false;
-        this.contactSection = false;
-      }
-      if (section === "contact") {
-        this.contactSection = true;
-        this.aboutSection = false;
-        this.skillsSection = false;
-        this.projectsSection = false;
-      }
-    },
   },
 };
 </script>
