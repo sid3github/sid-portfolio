@@ -1,0 +1,85 @@
+const experienceInfo = [
+  {
+    title: "Senior Frontend Developer",
+    company: "SR Edu Technologies Pvt Ltd",
+    short: "SR Edu",
+    years: "2025 —",
+    location: "Hyderabad, India · On-site",
+    date: "May 2025 - Present",
+    points: [
+      "Lead frontend for a multi-role School ERP (Admin, School, Branch, Teacher, Parent) used across multiple schools, owning architecture, sprint planning and UI delivery.",
+      "Built AbacuSync, a digital abacus and mental-math platform with a four-level content hierarchy (Levels > Units > Topics), student progress tracking and an admin CRM.",
+      "Developed the Vedic Math platform frontend from scratch: quiz systems, final test modules and level-based learning flows.",
+      "Integrated Razorpay for subscription and course-purchase flows, with cascading product configuration logic for course and level mapping.",
+      "Pioneered agentic AI coding workflows (Claude Code, OpenAI Codex, Cursor), running parallel agents for features, refactors and review — roughly 40 percent less feature development time.",
+      "Established a design-to-code pipeline with Claude Design and Google Stitch, compressing ideation-to-shippable-component from days to hours.",
+      "Led a UI modernization sprint migrating AdminLTE, Bootstrap, MUI and PrimeReact to one React component system on Tailwind and MUI — a 70-ticket Jira backlog across 5 sprints.",
+      "Mentored junior developers on Git workflows, AI-assisted development and component-driven architecture.",
+    ],
+  },
+  {
+    title: "Senior Associate, Development (JS)",
+    company: "Sportz Interactive",
+    short: "Sportz",
+    years: "2024 · 25",
+    location: "Mumbai, India · Hybrid",
+    date: "Aug 2024 - Apr 2025",
+    points: [
+      "Built and maintained complex sports-data web applications with real-time visualization and high-traffic frontend performance requirements.",
+      "Optimized rendering pipelines and component architecture for low-latency live sports updates.",
+      "Worked cross-functionally with backend, design and QA teams on fast-turnaround release cycles.",
+    ],
+  },
+  {
+    title: "Frontend / UI Developer",
+    company: "RelifeMS",
+    short: "RelifeMS",
+    years: "2022 · 24",
+    location: "Mumbai, India · On-site",
+    date: "May 2022 - Apr 2024",
+    points: [
+      "Owned frontend development of a healthcare web platform, delivering accessible, responsive interfaces in Vue and Nuxt.js.",
+      "Implemented a SASS-based design system that improved UI consistency across the product suite.",
+      "Shipped features with backend and UX teams in two-week Agile sprints.",
+    ],
+  },
+  {
+    title: "Senior User Interface Developer",
+    company: "Pert Telecom Solutions (PertSol)",
+    short: "PertSol",
+    years: "2021 · 22",
+    location: "Mumbai, India · On-site",
+    date: "Jul 2021 - May 2022",
+    points: [
+      "Developed JSP and Bootstrap enterprise telecom dashboards with jQuery-driven dynamic data rendering.",
+      "Delivered rapid UI bug fixes and feature enhancements in a fast-paced telecom environment.",
+    ],
+  },
+  {
+    title: "Web Developer",
+    company: "72 Dragons",
+    short: "72 Dragons",
+    years: "2019 · 21",
+    location: "Mumbai, India · Remote",
+    date: "Mar 2019 - Jun 2021",
+    points: [
+      "Built full-stack web applications using React, Vue, PHP and Bootstrap for a range of client projects.",
+      "Delivered client-facing data dashboards with Chart.js, covered by unit tests.",
+    ],
+  },
+  {
+    title: "Operations Executive",
+    company: "Googolplex Academy India",
+    short: "Googolplex",
+    years: "2016 · 19",
+    location: "Mumbai Metropolitan Region · Hybrid",
+    date: "Jan 2016 - Feb 2019",
+    points: [
+      "Managed end-to-end operations for an EdTech academy, coordinating faculty, students and management.",
+      "Drove process documentation and workflow optimization, reducing bottlenecks across departments.",
+      "First exposure to EdTech — the domain I now build products for.",
+    ],
+  },
+];
+
+export default experienceInfo;

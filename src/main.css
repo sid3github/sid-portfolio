@@ -1,0 +1,996 @@
+/* ---------------------------------------------------------------
+   Mac OS X Aqua (Leopard / Snow Leopard era).
+   Brushed-metal window chrome, inset wells, source lists, glossy
+   segmented controls. System faces are the period-accurate material
+   here, so no web fonts are loaded.
+   --------------------------------------------------------------- */
+:root {
+  --metal-top: #ebebeb;
+  --metal-bot: #c9c9c9;
+  --metal-line: #8d8d8d;
+  --window-bg: #ededed;
+  --well: #ffffff;
+  --well-line: #a2a2a2;
+
+  --sidebar: #dde4ed;
+  --sidebar-line: #b1bac6;
+
+  --aqua-top: #85b0ea;
+  --aqua-bot: #2c68cd;
+  --aqua-line: #2a5da8;
+  --aqua-link: #1b4ea8;
+
+  --ink: #1d1d1d;
+  --ink-soft: #3c3c3c;
+  --muted: #6a6a6a;
+
+  --emboss: 0 1px 0 rgba(255, 255, 255, 0.85);
+  --emboss-dark: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+  --ui: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma,
+    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: Monaco, Menlo, 'Andale Mono', 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ui);
+  font-size: 14px;
+  color: var(--ink);
+  /* the desktop behind the window */
+  background-color: #33405a;
+  background-image: radial-gradient(
+      120% 90% at 50% 0%,
+      #5a6f96 0%,
+      #3b496a 45%,
+      #232c42 100%
+    );
+  background-attachment: fixed;
+}
+
+::selection {
+  background: #b5d2f6;
+  color: #10233f;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(110, 165, 240, 0.75);
+  border-radius: 4px;
+}
+
+/* Aqua candy scrollbars */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #efefef, #fbfbfb);
+  border-left: 1px solid #cbcbcb;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 1px solid #4d7cb8;
+  background: linear-gradient(90deg, #b9d3f2 0%, #7ba9e2 45%, #4f84cf 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #a8c7ef, #4577c4);
+}
+
+/* ---------------------------------------------------------------
+   The window
+   --------------------------------------------------------------- */
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 980px;
+  margin: 2.5rem auto;
+  background-color: var(--window-bg);
+  border: 1px solid #6f6f6f;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0 24px 74px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Titlebar. The section name lives here — the person's name is in the
+   toolbar below and is deliberately not repeated. */
+.window-titlebar {
+  flex: 0 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  background: linear-gradient(var(--metal-top), var(--metal-bot));
+  border-bottom: 1px solid var(--metal-line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.window-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #4a4a4a;
+  text-shadow: var(--emboss);
+}
+
+.traffic-lights {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 12px;
+  background-image: radial-gradient(
+      circle at 6px 6px,
+      #ff6157 0 5px,
+      rgba(0, 0, 0, 0.2) 5px 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 26px 6px,
+      #ffbd2e 0 5px,
+      rgba(0, 0, 0, 0.2) 5px 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 46px 6px,
+      #28c93f 0 5px,
+      rgba(0, 0, 0, 0.2) 5px 6px,
+      transparent 6px
+    );
+}
+
+/* ---------------------------------------------------------------
+   Unified toolbar — avatar, name, links
+   --------------------------------------------------------------- */
+.page-top {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 20px;
+  background: linear-gradient(#e4e4e4, #cdcdcd);
+  border-bottom: 1px solid #9c9c9c;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.right-section {
+  order: -1;
+  flex: 0 0 auto;
+}
+
+.image-container img {
+  display: block;
+  width: clamp(58px, 10vh, 88px);
+  height: clamp(58px, 10vh, 88px);
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #7d7d7d;
+  background: #fff;
+  padding: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), var(--emboss);
+}
+
+.left-section {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Right-hand toolbar group — the toolbar was weighted entirely to the left. */
+.toolbar-meta {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+}
+
+.toolbar-location {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: #5c5c5c;
+  text-shadow: var(--emboss);
+}
+
+/* Aqua push button */
+.aqua-button {
+  cursor: pointer;
+  font-family: var(--ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f1f1f;
+  text-shadow: var(--emboss);
+  padding: 5px 15px;
+  border: 1px solid #8b8b8b;
+  border-radius: 13px;
+  background: linear-gradient(#ffffff, #dcdcdc);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.aqua-button:hover {
+  background: linear-gradient(#ffffff, #cfcfcf);
+}
+
+.aqua-button:active {
+  background: linear-gradient(#c6c6c6, #e6e6e6);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.left-section h1 {
+  font-family: var(--ui);
+  font-size: clamp(19px, 2.9vh, 25px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  text-shadow: var(--emboss);
+}
+
+.left-section h3 {
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #575757;
+  text-shadow: var(--emboss);
+}
+
+.social-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 7px;
+}
+
+.social-links a,
+.md-links a,
+.info-detail a,
+.contact-row a,
+.email-click {
+  font-size: 12px;
+  color: var(--aqua-link);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.social-links a:hover,
+.md-links a:hover,
+.info-detail a:hover,
+.contact-row a:hover,
+.email-click:hover {
+  color: #0d3272;
+}
+
+/* ---------------------------------------------------------------
+   Body area
+   --------------------------------------------------------------- */
+.bottom-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+
+/* Aqua segmented control */
+.buttons-section {
+  display: inline-flex;
+  align-self: center;
+  border: 1px solid #8b8b8b;
+  border-radius: 5px;
+  overflow: hidden;
+  background: linear-gradient(#fdfdfd, #dadada);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.buttons-section button {
+  cursor: pointer;
+  border: none;
+  border-left: 1px solid #a7a7a7;
+  padding: 6px 19px;
+  background: transparent;
+  font-family: var(--ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: #2c2c2c;
+  text-shadow: var(--emboss);
+}
+
+.buttons-section button:first-child {
+  border-left: none;
+}
+
+.buttons-section button:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.09));
+}
+
+.buttons-section .active {
+  color: #fff;
+  text-shadow: var(--emboss-dark);
+  background: linear-gradient(var(--aqua-top), var(--aqua-bot));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Recessed content well */
+.info-section {
+  background-color: var(--well);
+  border: 1px solid var(--well-line);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.19), var(--emboss);
+}
+
+/* ---------------------------------------------------------------
+   Prose
+   --------------------------------------------------------------- */
+.about-panel,
+.contact-panel {
+  padding: 22px 24px;
+}
+
+/* Contact: a compact labelled block rather than four floating lines. */
+.contact-panel {
+  max-width: 74ch;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------
+   Contact "signal" — a glass core with satellites orbiting on two
+   tilted rings. Perspective + preserve-3d, so it is genuinely 3D
+   rather than a flat drawing.
+   --------------------------------------------------------------- */
+.contact-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(114px, 19vh, 172px);
+  margin: 0 auto 18px;
+  perspective: 620px;
+}
+
+.stage-scene {
+  position: relative;
+  width: clamp(94px, 15.5vh, 142px);
+  height: clamp(94px, 15.5vh, 142px);
+  transform-style: preserve-3d;
+  animation: stage-float 6.5s ease-in-out infinite;
+}
+
+@keyframes stage-float {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* glass core */
+.orb {
+  position: absolute;
+  inset: 23%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 33% 26%,
+    #d6e9ff 0%,
+    #7cb0ea 40%,
+    #1c4f92 78%,
+    #0d2f5e 100%
+  );
+  box-shadow: inset 0 -12px 20px rgba(8, 34, 70, 0.55),
+    inset 0 7px 14px rgba(255, 255, 255, 0.4),
+    0 12px 26px rgba(10, 32, 66, 0.42);
+}
+
+.orb-gloss {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 5%;
+  height: 40%;
+  border-radius: 50%;
+  background: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  opacity: 0.72;
+}
+
+/* slow specular sweep across the glass */
+.orb-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.orb-shine::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -65%;
+  width: 55%;
+  height: 180%;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0)
+  );
+  animation: orb-shine 5.5s ease-in-out infinite;
+}
+
+@keyframes orb-shine {
+  0% {
+    left: -65%;
+  }
+  55%,
+  100% {
+    left: 135%;
+  }
+}
+
+/* orbital rings — tilted, then spun in their own plane so the ring holds
+   still and the satellites travel around it */
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(126, 186, 245, 0.85);
+  box-shadow: 0 0 12px rgba(120, 180, 240, 0.5),
+    inset 0 0 10px rgba(150, 200, 250, 0.3);
+  transform-style: preserve-3d;
+}
+
+.ring-a {
+  animation: ring-a 13s linear infinite;
+}
+
+.ring-b {
+  animation: ring-b 19s linear infinite;
+}
+
+@keyframes ring-a {
+  from {
+    transform: rotateX(67deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(67deg) rotateY(360deg);
+  }
+}
+
+@keyframes ring-b {
+  from {
+    transform: rotateX(57deg) rotateZ(54deg) rotateY(360deg);
+  }
+  to {
+    transform: rotateX(57deg) rotateZ(54deg) rotateY(0deg);
+  }
+}
+
+.bead {
+  position: absolute;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 34% 30%,
+    #ffffff 0%,
+    #9ec8f4 45%,
+    #2c67bd 100%
+  );
+  box-shadow: 0 0 10px rgba(150, 200, 255, 0.95),
+    0 0 22px rgba(110, 170, 240, 0.55);
+}
+
+.bead-top {
+  top: -7px;
+}
+
+.bead-bottom {
+  bottom: -7px;
+}
+
+.stage-shadow {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 42%;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(14, 34, 62, 0.34),
+    rgba(14, 34, 62, 0) 70%
+  );
+  animation: stage-shadow 6.5s ease-in-out infinite;
+}
+
+@keyframes stage-shadow {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+    opacity: 0.38;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-scene,
+  .ring-a,
+  .ring-b,
+  .orb-shine::after,
+  .stage-shadow {
+    animation: none;
+  }
+
+  .stage-shadow {
+    transform: translateX(-50%);
+  }
+}
+
+.contact-lede {
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--ink-soft);
+}
+
+.contact-rows {
+  margin-top: 16px;
+  border-top: 1px solid #e2e2e2;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.contact-row dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: var(--emboss);
+}
+
+.contact-row dd {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.contact-row dd a + a {
+  margin-left: 12px;
+}
+
+.info-detail,
+.project-description {
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--ink-soft);
+}
+
+/* About reads as a document: hold a comfortable measure and centre it so
+   the leftover width becomes symmetric margin instead of a dead column. */
+.info-detail {
+  max-width: 74ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-detail + .info-detail {
+  margin-top: 11px;
+}
+
+.info-detail span {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+
+/* ---------------------------------------------------------------
+   Master-detail: source list + detail
+   --------------------------------------------------------------- */
+.md-layout {
+  display: grid;
+  grid-template-columns: minmax(140px, 176px) 1fr;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.md-rail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 6px 0;
+  background-color: var(--sidebar);
+  border-right: 1px solid var(--sidebar-line);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.45);
+}
+
+.md-rail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 6px 12px;
+  font-family: var(--ui);
+}
+
+.md-rail-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.md-rail-item.is-active {
+  background: linear-gradient(var(--aqua-top), var(--aqua-bot));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.md-rail-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #24303f;
+  text-shadow: var(--emboss);
+}
+
+.md-rail-item.is-active .md-rail-name {
+  color: #fff;
+  text-shadow: var(--emboss-dark);
+}
+
+.md-rail-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: #5d6673;
+}
+
+.md-rail-item.is-active .md-rail-meta {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: var(--emboss-dark);
+}
+
+.md-detail {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.md-detail > * {
+  flex: 0 0 auto;
+}
+
+.md-detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #dcdcdc;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.md-detail-head h5 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.exp-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.exp-company {
+  font-size: 12px;
+  color: var(--aqua-link);
+  margin-top: 6px;
+}
+
+.project-description {
+  margin-top: 9px;
+}
+
+.md-points {
+  list-style: none;
+  margin: 10px 0 0;
+}
+
+.md-points li {
+  position: relative;
+  padding-left: 15px;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.md-points li::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #9dc4f2, #3f79cc);
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
+}
+
+.md-detail-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 13px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Aqua capsule badge */
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  color: #34435a;
+  text-shadow: var(--emboss);
+  border: 1px solid #a8b4c4;
+  border-radius: 9px;
+  padding: 2px 9px;
+  background: linear-gradient(#fbfcfe, #dce3ec);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.md-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------
+   Skills — logos only
+   --------------------------------------------------------------- */
+.skills-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 18px;
+}
+
+.skills-images {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(14px, 4vh, 40px) clamp(16px, 2.6vw, 42px);
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  justify-items: center;
+  align-items: center;
+}
+
+.skill-logo {
+  display: grid;
+  place-items: center;
+}
+
+.skills-images img {
+  height: clamp(2.2rem, 6.2vh, 3.8rem);
+  width: clamp(2.2rem, 6.2vh, 3.8rem);
+  object-fit: contain;
+  transition: transform 0.15s ease-out;
+}
+
+.skill-logo:hover img {
+  transform: scale(1.12);
+}
+
+.skill-pending {
+  display: block;
+  height: clamp(2.2rem, 6.2vh, 3.8rem);
+  width: clamp(2.2rem, 6.2vh, 3.8rem);
+  border: 1px dashed #b4b4b4;
+  border-radius: 5px;
+}
+
+/* ---------------------------------------------------------------
+   Panel transition
+   --------------------------------------------------------------- */
+.fade-enter-active {
+  transition: opacity 0.18s ease-out;
+}
+
+.fade-leave-active {
+  transition: opacity 0.1s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-enter-active,
+  .fade-leave-active,
+  .skills-images img {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Lock the window to one viewport
+   --------------------------------------------------------------- */
+@media screen and (min-width: 768px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #app {
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 2.4vh, 28px) 20px;
+  }
+
+  /* The window is sized by its content and floats on the desktop, the way a
+     real one does. Stretching it to the viewport is what produced the empty
+     bands. max-height still caps it, and the flex chain below lets the panel
+     scroll internally rather than push the page. */
+  .main-page-container {
+    flex: 0 1 auto;
+    max-height: 100%;
+    margin: 0;
+    width: 100%;
+  }
+
+  .bottom-shell {
+    min-height: 0;
+  }
+
+  /* One fixed height for every panel, so the window never resizes when you
+     change tab or move down the source list. Sized to the densest panel
+     (Experience / SR Edu), and capped so it still fits short viewports. */
+  .info-section {
+    height: min(474px, calc(100dvh - 236px));
+    min-height: 0;
+    display: flex;
+  }
+
+  .info-section > * {
+    width: 100%;
+    min-height: 0;
+  }
+
+  /* Sparse panels centre in the fixed well so the slack reads as deliberate
+     padding rather than content stuck to the top. */
+  .about-panel,
+  .contact-panel {
+    align-self: center;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+}
+
+/* Short viewports: tighten the densest panel */
+@media screen and (min-width: 768px) and (max-height: 720px) {
+  .page-top {
+    padding: 10px 16px;
+  }
+
+  .md-points li {
+    font-size: 12.5px;
+    line-height: 18px;
+    margin-bottom: 4px;
+  }
+
+  .info-detail,
+  .contact-lede,
+  .project-description {
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  .info-detail + .info-detail {
+    margin-top: 9px;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Below the lock: normal document flow
+   --------------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+  .main-page-container {
+    margin: 1rem;
+  }
+
+  /* Keep the control on one row — wrapping left a lone full-width segment.
+     Tighter padding fits all five without clipping. */
+  .buttons-section {
+    display: flex;
+    flex-wrap: nowrap;
+    align-self: center;
+    max-width: 100%;
+  }
+
+  .buttons-section button {
+    flex: 0 1 auto;
+    padding: 7px 7px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .page-top {
+    flex-wrap: wrap;
+  }
+
+  .md-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    /* The pinned desktop height exists to stop the window resizing as you
+       move down the source list. Stacked on mobile there is no window to
+       keep steady, so it would only add dead space. */
+    min-height: 0;
+  }
+
+  .md-rail {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--sidebar-line);
+    padding: 4px;
+  }
+
+  .md-rail-item {
+    flex: 0 0 auto;
+    border-radius: 4px;
+  }
+
+  .md-detail {
+    overflow: visible;
+  }
+
+  .skills-images {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
