@@ -28,8 +28,8 @@
       <div class="contact-row">
         <dt>Email</dt>
         <dd>
-          <span class="email-click" @click="emailButton"
-            >siddharthpadwal3@gmail.com</span
+          <a class="email-click" href="mailto:siddharthpadwal3@gmail.com"
+            >siddharthpadwal3@gmail.com</a
           >
         </dd>
       </div>
@@ -60,13 +60,3 @@
     </dl>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    emailButton() {
-      window.location.href =
-        "mailto:siddharthpadwal3@gmail.com?subject=Subject&body=message%20goes%20here";
-    },
-  },
-};
-</script>

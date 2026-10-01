@@ -40,7 +40,7 @@ export const projectItems = [
       "AI-first universal email client that merges Gmail, Outlook and any IMAP mailbox into a single feed, where every message arrives already summarised and prioritised.",
     highlights: [
       "One-line summary and a five-level priority on every incoming message.",
-      "Triage runs locally on the client — no API key and no per-message cost.",
+      "Rule-based triage runs in the app's server routes — no external AI API key or per-message cost.",
       "Unified feed across multiple providers and accounts at once.",
     ],
     project_tags: ["Next.js", "TypeScript", "Tailwind"],
@@ -51,12 +51,13 @@ export const projectItems = [
     project_company: "Client project",
     project_url: "https://gamedevpanel.com/",
     project_description:
-      "Internal admin and back-office panel for game operations — the authenticated surface teams use to manage users, content and configuration.",
+      "Admin panel for an education platform that manages products and schools, builds course and quiz content, assigns learning to students, and tracks their progress.",
     highlights: [
-      "Authenticated back-office surface with role-based access.",
-      "Data-dense management views over operational records.",
+      "Product and school setup with class, section and student management.",
+      "Course, level, unit, topic, quiz and game configuration workflows.",
+      "Course assignment and student progress dashboards and reports.",
     ],
-    project_tags: ["React", "TypeScript"],
+    project_tags: ["React", "JavaScript", "Laravel", "Vite"],
   },
 ];
 
