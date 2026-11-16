@@ -1,0 +1,5 @@
+# Plain static site. Netlify's site settings publish from "dist",
+# so the build step just copies the site into that folder.
+[build]
+  command = "rm -rf dist && mkdir dist && cp -R index.html styles.css main.js assets dist/"
+  publish = "dist"
