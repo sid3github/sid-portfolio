@@ -657,3 +657,16 @@ b, strong { font-weight: 700; }
   .ana__stage { perspective: none; }
   .ana__layer { transform: perspective(900px) translateX(calc((var(--k) - 3) * var(--s) * var(--gap))) rotateY(calc(var(--s) * -24deg)) translateZ(var(--z, 0px)); }
 }
+
+
+/* ── Smooth scrolling ── */
+html { scroll-behavior: auto; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+[tabindex="-1"]:focus { outline: none; }
+.hero.is-off .hero__name span { animation-play-state: paused; }
+/* the fan follows the scroll exactly, with no extra easing on top */
+.ana__stack { transition: opacity 0.4s; }
