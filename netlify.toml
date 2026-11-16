@@ -1,0 +1,4 @@
+# Plain static site: nothing to build, serve the repo root.
+[build]
+  command = "echo 'static site, nothing to build'"
+  publish = "."
