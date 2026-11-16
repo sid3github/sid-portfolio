@@ -1,4 +1,5 @@
-# Plain static site: nothing to build, serve the repo root.
+# Plain static site. Netlify's site settings publish from "dist",
+# so the build step just copies the site into that folder.
 [build]
-  command = "echo 'static site, nothing to build'"
-  publish = "."
+  command = "rm -rf dist && mkdir dist && cp -R index.html styles.css main.js assets dist/"
+  publish = "dist"
