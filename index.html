@@ -514,7 +514,7 @@
 </nav>
 
 <!-- ───────────── Player ───────────── -->
-<dialog class="player" id="player" aria-label="Video player">
+<dialog class="player" id="player" aria-label="Video player" data-lenis-prevent>
   <div class="player__inner">
     <video id="playerVideo" controls playsinline></video>
     <div class="player__bar">
@@ -524,6 +524,7 @@
   </div>
 </dialog>
 
+<script src="assets/js/lenis.min.js" defer></script>
 <script src="main.js" defer></script>
 </body>
 </html>
