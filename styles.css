@@ -645,3 +645,15 @@ b, strong { font-weight: 700; }
   .ana__stack { --gap: min(9.4vw, 134px); width: min(19vw, 24vh, 214px); }
   .ana__layer.is-on { --z: 50px; scale: 1.1; translate: 0 -3%; }
 }
+
+/* ── Reel breakdown: the highlighted card is always fully on top ──
+   Each card carries its own perspective, so stacking follows z-index
+   (highlighted card first) and no neighbour can cut across it. */
+.ana__stage { perspective: none; }
+.ana__stack { transform-style: flat; }
+.ana__layer { transform: perspective(1400px) translateX(calc((var(--k) - 3) * var(--s) * var(--gap))) rotateY(calc(var(--s) * -34deg)) translateZ(var(--z, 0px)); }
+.ana__layer.is-on { z-index: 30; opacity: 1; }
+@media (max-width: 820px) {
+  .ana__stage { perspective: none; }
+  .ana__layer { transform: perspective(900px) translateX(calc((var(--k) - 3) * var(--s) * var(--gap))) rotateY(calc(var(--s) * -24deg)) translateZ(var(--z, 0px)); }
+}
